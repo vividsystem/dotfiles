@@ -41,19 +41,15 @@ export PATH=$PATH:$HOME/Developer/Code/Projects/autofile/
 export DOOMDIR=$HOME/.config/doom
 export GOPATH=$HOME/.go
 export GOBIN=$HOME/.go/bin
+
 #alias colorscript="sh /Users/mateostiller/.config/shell-color-scripts/colorscript.sh"
 
 #Alias
 source ~/.config/zsh/aliases.zsh
 source ~/.config/zsh/funcs.zsh
-echo ""
-echo "zsh ready. coding ready. hacking ready."
-echo ""
-alias virtualenv="python3 -m virtualenv"
 
 colorscript random
 
-echo "\nvividsystem - the vivid developer\n" | lolcat --spread=1 --freq=.3 -a --duration=15
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_OPS="--extended"
