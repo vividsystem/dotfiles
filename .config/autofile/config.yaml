@@ -1,0 +1,39 @@
+origins:
+- "/Users/mateostiller/Downloads/"
+file_extensions:
+  pictures:
+    endings:
+    - ".jpeg"
+    - ".png"
+    - ".jpg"
+    destination: "~/Pictures/"
+    addDate: true
+filestarts:
+  school:
+    directory: "/Users/mateostiller/Documents/school/"
+    starts:
+    - Biologie
+    - Chemie
+    - Geschichte
+    - Chinesisch
+    - Deutsch
+    - Englisch
+    - Erdkunde
+    - Informatik
+    - Kunst
+    - Latein
+    - Mathematik
+    - Musik
+    - Physik
+    - Politik
+    - Religion
+    addDate: true
+
+plugins:
+  backup:
+    dotfiles:
+      files: #directories also work
+        - "~/.config/autofile/"
+        - "~/.zshrc"
+        - "~/.config/kitty/"
+      backup_directory: "~/.dotfiles/"
