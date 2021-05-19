@@ -1,2 +1,3 @@
 .config/nvim/autoload/plugged/*
-
+.env
+xmonad-x86_64-linux
