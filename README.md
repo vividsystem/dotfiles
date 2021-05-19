@@ -1,3 +1,1 @@
-# My Dotfiles/Configs
-OS: Arch Linux
-WM: xmonad
+# Dotfiles used in my \*NIX Systems
