@@ -1,1 +1,4 @@
 .DS_Store
+.config/nvim/autoload
+.xmonad/xmonad.{o,hi,errors}
+.xmoand/xmonad-*
