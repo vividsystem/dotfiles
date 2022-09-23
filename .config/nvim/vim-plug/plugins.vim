@@ -6,6 +6,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
   Plug 'jiangmiao/auto-pairs' " Automatical Pairs
 
   "Visuals
+  Plug 'catppuccin/nvim', {'as': 'catpuccin'}
   Plug 'dracula/vim', { 'as': 'dracula' }            " Editor Theme
   Plug 'drewtempelmeyer/palenight.vim'               " Editor Theme 2
   Plug 'vim-airline/vim-airline'                     " The Bars 

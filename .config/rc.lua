@@ -6,7 +6,6 @@ local awful = require("awful")
 require("awful.autofocus")
 -- Widget and layout library
 local wibox = require("wibox")
-local lain = require("lain")
 -- Theme handling library
 local beautiful = require("beautiful")
 local theme = require("themes/catpuccin")
@@ -60,18 +59,6 @@ awful.layout.layouts = {
 
 
 
-local alsa = lain.widget.alsa({
-    settings = function ()
-         widget:set_markup("" .. volume_now.status .. " ".. volume_now.level .. "% ")
-    end
-})
-
-local myalsa = {
-    alsa,
-    fg = theme.volume_fg,
-    bg = theme.volume_bg,
-    widget = wibox.container.background
-}
 
 local mykeyboardlayout = {
     awful.widget.keyboardlayout(),
@@ -86,22 +73,6 @@ local mytextclock = {
     bg = theme.date_bg,
     widget = wibox.container.background
     
-}
-
-local bat = lain.widget.bat({
-    battery = "BAT0",
-    settings = function()
-        if bat_now.status ~= "N/A" then
-            widget:set_markup(" " .. bat_now.status .." ".. bat_now.perc .. "% ")
-        end
-    end,
-})
-
-local mybattery = {
-    bat,
-    fg = theme.battery_fg,
-    bg = theme.battery_bg,
-    widget = wibox.container.background
 }
 
 -- Create a wibox for each screen and add it
@@ -207,11 +178,9 @@ awful.screen.connect_for_each_screen(function(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            myalsa,
             mykeyboardlayout,
             wibox.widget.systray(),
-            mytextclock,
-            mybattery
+            mytextclock
         }
     }
 end)
@@ -228,6 +197,10 @@ root.buttons(gears.table.join(
 local globalkeys = gears.table.join(
     awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
               {description="show help", group="awesome"}),
+    awful.key({ modkey,           }, "Left",   awful.tag.viewprev,
+              {description = "view previous", group = "tag"}),
+    awful.key({ modkey,           }, "Right",  awful.tag.viewnext,
+              {description = "view next", group = "tag"}),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore,
               {description = "go back", group = "tag"}),
 
@@ -274,6 +247,10 @@ local globalkeys = gears.table.join(
     awful.key({ modkey, "Shift"   }, "q", awesome.quit,
               {description = "quit awesome", group = "awesome"}),
 
+    awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)          end,
+              {description = "increase master width factor", group = "layout"}),
+    awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact(-0.05)          end,
+              {description = "decrease master width factor", group = "layout"}),
     awful.key({ modkey, "Control" }, "h",     function () awful.tag.incncol( 1, nil, true)    end,
               {description = "increase the number of columns", group = "layout"}),
     awful.key({ modkey, "Control" }, "l",     function () awful.tag.incncol(-1, nil, true)    end,
@@ -361,10 +338,7 @@ local clientkeys = gears.table.join(
             c.maximized_horizontal = not c.maximized_horizontal
             c:raise()
         end ,
-        {description = "(un)maximize horizontally", group = "client"}),
-    awful.key({ modkey  }, "h",   function (c) c:relative_move(20,  20, -40, -40) end),
-    awful.key({ modkey, "Shift"   }, "Prior",  function (c) c:relative_move(-20, -20,  40,  40) end)
-        
+        {description = "(un)maximize horizontally", group = "client"})
 )
 
 -- Bind all key numbers to tags.
@@ -418,16 +392,17 @@ for i = 1, 9 do
 end
 
 local clientbuttons = gears.table.join(
+    awful.button({ }, 1, function (c)
+        c:emit_signal("request::activate", "mouse_click", {raise = true})
+    end),
     awful.button({ modkey }, 1, function (c)
         c:emit_signal("request::activate", "mouse_click", {raise = true})
         awful.mouse.client.move(c)
     end),
-    awful.button({ modkey}, 2, function (c)
-        c:emit_signal("request::activate", "mouse_click", { raise = true}
-        
-    )
-    end),
-    awful.button({ modkey }, 3, awful.mouse.client.resize)
+    awful.button({ modkey }, 3, function (c)
+        c:emit_signal("request::activate", "mouse_click", {raise = true})
+        awful.mouse.client.resize(c)
+    end)
 )
 
 -- Set keys
@@ -467,14 +442,12 @@ awful.rules.rules = {
           "Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
           "Wpa_gui",
           "veromix",
-          "xtightvncviewer"
-        },
+          "xtightvncviewer"},
 
         -- Note that the name property shown in xprop might be set slightly after creation of the client
         -- and the name shown there might not match defined rules here.
         name = {
           "Event Tester",  -- xev.
-          
         },
         role = {
           "AlarmWindow",  -- Thunderbird's calendar.
