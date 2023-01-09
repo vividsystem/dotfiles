@@ -1,0 +1,15 @@
+base
+linux
+linux-firmware
+nvidia
+zsh
+xorg
+awesome
+vim
+nano
+networkmanager
+iwd
+alacritty
+git
+base-devel
+sudo
