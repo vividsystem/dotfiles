@@ -13,3 +13,5 @@ alacritty
 git
 base-devel
 sudo
+nitrogen
+picom
