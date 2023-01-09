@@ -27,6 +27,7 @@ echo "Set LANG succesfully"
 
 read -p "keymap: " keymap
 echo "KEYMAP=${keymap}" > /etc/vconsole.conf
+timedatectl set-x11-keymap $keymap
 
 # Hostname
 read -p "Hostname: " hostname
