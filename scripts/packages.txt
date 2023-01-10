@@ -15,3 +15,6 @@ base-devel
 sudo
 nitrogen
 picom
+alsa
+pipewire
+wireplumber
