@@ -16,5 +16,6 @@ sudo
 nitrogen
 picom
 alsa
+alsa-utils
 pipewire
 wireplumber
