@@ -22,4 +22,4 @@ set `gfx.font_rendering.fontconfig.max_generic_substitutions` to `127`
  (might add rices or smth later)
 
 ## License
-Provided under the [MIT License](./LICENSE)
+Provided under the [MIT License](./LICENSE.md)
