@@ -4,7 +4,7 @@ configuration{
     font: "FiraCode Nerd Font Mono 14";
     show-icons: true;
     icon-theme: "Oranchelo";
-    terminal: "st";
+    terminal: "/usr/bin/alacritty";
     drun-display-format: "{icon} {name}";
     location: 0;
     disable-history: false;

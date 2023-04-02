@@ -1,3 +1,3 @@
-require('keybindings')
 require('options')
+require('keymaps')
 require('plugins')
