@@ -158,6 +158,13 @@ return require('packer').startup(function (use)
     config = function() require("plugins.telekasten") end
   }
 
+  use {
+    'numToStr/Comment.nvim',
+    config = function()
+        require('Comment').setup()
+    end
+  }
+
   ------------------
 	--++   LSP    ++--
   ------------------
