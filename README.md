@@ -1,4 +1,4 @@
-# Vivid Dotfiles
+# Vivid DotfilesRE
 ## My Setup
 * WM: AwesomeWM
 * Editor: Neovim
@@ -6,6 +6,9 @@
 * Shell: zsh
 * Terminal: alacritty
 
+## TODOS
+[ ] add Comments.nvim config
+[ ] add motion/hop/leap w/ config
 
 ## Install
 To install run all my dotfiles run `stow */` for specific dotfiles run `stow <dotfile>`
