@@ -1,5 +1,4 @@
 local km = vim.keymap
-local wk = require('which-key')
 
 local default_opts = {
   noremap = true,
