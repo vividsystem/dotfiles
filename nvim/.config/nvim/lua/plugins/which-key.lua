@@ -22,6 +22,7 @@ wk.register({
   v = {
     name = "vcs/git",
     s = { "<cmd>Neogit <CR>", "Status" },
+    d = { "<cmd>DiffViewOpen <CR>", "View Diffs"},
     g = {
       name = "github",
       i = {
