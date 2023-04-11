@@ -28,7 +28,7 @@ return require('packer').startup(function (use)
   use 'nvim-tree/nvim-web-devicons'
 
 	--------------------
-	--++ Themes ++--
+	--++   Themes   ++--
 	--------------------
 	use {
 		'marko-cerovac/material.nvim',
@@ -88,7 +88,9 @@ return require('packer').startup(function (use)
 		tag = '*',
 		config = function() require("plugins.toggleterm")	end
 	}
-	-- Neogit -> Git implementation
+  ------------------
+  --++   Git    ++--
+  ------------------
 	use {
 		'TimUntersberger/neogit',
 		config = function() require("plugins.neogit") end
@@ -112,6 +114,9 @@ return require('packer').startup(function (use)
 		config = function() require("plugins.octo") end
 	}
 
+  ------------------
+  --++   QOL    ++--
+  ------------------
   use {
     "Pocco81/auto-save.nvim",
     config = function() require("plugins.auto-save") end
@@ -148,20 +153,21 @@ return require('packer').startup(function (use)
     config = function() require("plugins.telekasten") end
   }
 
-	--+ Language Support +--
+  ------------------
+	--++   LSP    ++--
+  ------------------
   use {
     "williamboman/mason.nvim",
-    config = function() require('plugins.mason') end
+    config = function() require('plugins.mason') end,
+    requires = {
+      "williamboman/mason-lspconfig.nvim"
+    }
   }
 
   use {
     'neovim/nvim-lspconfig',
-    config = function() require('plugins.lspconfig') end
+    config = function() require('plugins.lspconfig') end,
   }
-
-  use "williamboman/mason-lspconfig.nvim"
-
-
 
   use "folke/neodev.nvim" -- neovim lua support	
   use 'nanotee/sqls.nvim' -- sql
@@ -185,7 +191,7 @@ return require('packer').startup(function (use)
     }
   }
 
-	--whichkey	
+	-- KEYBINDS
   use {
     'folke/which-key.nvim',
     config = function() require('plugins.which-key') end
