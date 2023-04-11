@@ -172,6 +172,9 @@ return require('packer').startup(function (use)
   use {
     'neovim/nvim-lspconfig',
     config = function() require('plugins.lspconfig') end,
+    requires = {
+      "jose-elias-alvarez/null-ls.nvim"
+    }
   }
 
   use "folke/neodev.nvim" -- neovim lua support
