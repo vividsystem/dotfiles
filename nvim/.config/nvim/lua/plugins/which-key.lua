@@ -21,7 +21,7 @@ wk.register({
 
   v = {
     name = "vcs/git",
-    s = { "<cmd>Neogit", "Status" },
+    s = { "<cmd>Neogit <CR>", "Status" },
     g = {
       name = "github",
       i = {
