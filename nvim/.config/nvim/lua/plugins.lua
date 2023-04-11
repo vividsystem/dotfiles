@@ -173,7 +173,10 @@ return require('packer').startup(function (use)
     'neovim/nvim-lspconfig',
     config = function() require('plugins.lspconfig') end,
     requires = {
-      "jose-elias-alvarez/null-ls.nvim"
+      {
+        "jose-elias-alvarez/null-ls.nvim",
+        config = function()  require('plugins.null-ls') end
+      }
     }
   }
 
