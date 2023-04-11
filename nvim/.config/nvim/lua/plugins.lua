@@ -174,7 +174,7 @@ return require('packer').startup(function (use)
     config = function() require('plugins.lspconfig') end,
   }
 
-  use "folke/neodev.nvim" -- neovim lua support	
+  use "folke/neodev.nvim" -- neovim lua support
   use 'nanotee/sqls.nvim' -- sql
   use {
     'ray-x/go.nvim',
