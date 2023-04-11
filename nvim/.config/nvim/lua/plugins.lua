@@ -114,6 +114,11 @@ return require('packer').startup(function (use)
 		config = function() require("plugins.octo") end
 	}
 
+  use {
+    'sindrets/diffview.nvim',
+    requires = 'nvim-lua/plenary.nvim'
+  }
+
   ------------------
   --++   QOL    ++--
   ------------------
