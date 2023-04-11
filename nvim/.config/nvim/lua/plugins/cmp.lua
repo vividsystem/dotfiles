@@ -24,8 +24,8 @@ cmp.setup {
     ['<Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
-      elseif snippy.expand_or_jumpable() then
-        snippy.expand_or_jump()
+      elseif snippy.expand_or_advance() then
+        snippy.expand_or_advance()
       else
         fallback()
       end

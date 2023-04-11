@@ -1,22 +1,27 @@
-local builtin = require('telescope.builtin')
-require('telescope').setup{
+local telescope = require('telescope')
+
+telescope.load_extension('media_files')
+telescope.load_extension('projects')
+telescope.load_extension('gh')
+
+telescope.setup({
 	defaults = {
 		mappings = {
-			i = {} --whichkey stuff
-
+			n = {
+      } --whichkey stuff
 		},
 
-		pickers = {},
+		pickers = {
+      find_files = {
+        follow = true
+      }
+    },
 		extesions = {
       media_files = {
         find_cmd = "rg"
-      }
+      },
+      projects = {},
+      gh = {}
     }
 	}
-}
-
-vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
-vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
-vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
-vim.keymap.set('n', '<leader>fch', builtin.search_history, {})
+})
