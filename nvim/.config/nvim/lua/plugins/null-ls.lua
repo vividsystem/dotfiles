@@ -9,7 +9,6 @@ local sources = {
   bi.formatting.isort,
 
   bi.diagnostics.write_good,
-  bi.diagnostics.eslint_d,
   bi.diagnostics.tsc,
 
   bi.code_actions.gitsigns,
