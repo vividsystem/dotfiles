@@ -14,7 +14,7 @@ wk.register({
     name = "find",
     f = { function() require('telescope.builtin').find_files({ follow = true }) end, "file search" },
     p = { require('telescope').extensions.projects.projects, "project search"},
-    g = { require('telescope.builtin').buffer, "buffer search" },
+    b = { require('telescope.builtin').buffer, "buffer search" },
     h = { require('telescope.builtin').help_tags, "help search" },
     e = { "<cmd>NvimTreeToggle <CR>", "file explorer" }
   },
