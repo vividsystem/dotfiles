@@ -16,7 +16,8 @@ wk.register({
     p = { require('telescope').extensions.projects.projects, "project search"},
     b = { require('telescope.builtin').buffers, "buffer search" },
     h = { require('telescope.builtin').help_tags, "help search" },
-    e = { "<cmd>NvimTreeToggle <CR>", "file explorer" }
+    e = { "<cmd>NvimTreeFocus <CR>", "file explorer" },
+    E = { "<cmd>NvimTreeClose <CR>", "close file explorer"}
   },
 
   v = {
