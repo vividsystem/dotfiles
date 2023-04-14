@@ -154,6 +154,11 @@ return require('packer').startup(function (use)
 	}
 
   use {
+    "iamcco/markdown-preview.nvim",
+    run = function() vim.fn["mkdp#util#install"]() end,
+  }
+
+  use {
     'renerocksai/telekasten.nvim',
     config = function() require("plugins.telekasten") end
   }
