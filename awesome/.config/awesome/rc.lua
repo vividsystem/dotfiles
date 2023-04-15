@@ -85,7 +85,7 @@ local mytextclock = {
     fg = theme.date_fg,
     bg = theme.date_bg,
     widget = wibox.container.background
-    
+
 }
 
 local bat = lain.widget.bat({
@@ -187,12 +187,12 @@ awful.screen.connect_for_each_screen(function(s)
             id = "background_role",
             widget = wibox.container.background,
         }
-       
+
     }
 
     -- Create the wibox
-    s.mywibox = awful.wibar({ 
-        position = "top", 
+    s.mywibox = awful.wibar({
+        position = "top",
         screen = s,
     })
 
@@ -298,7 +298,7 @@ local globalkeys = gears.table.join(
               {description = "restore minimized", group = "client"}),
 
     -- Prompt
-    awful.key({ modkey },   "r", function () 
+    awful.key({ modkey },   "r", function ()
         awful.util.spawn(run_prompt) end,
         {description = "run prompt", group = "launcher"}),
 
@@ -328,7 +328,7 @@ local clientkeys = gears.table.join(
     awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end,
               {description = "move to master", group = "client"}),
 
-    awful.key({ modkey, "Shift" }, "Return", function (c) awful.client.setmaster(c) end, 
+    awful.key({ modkey, "Shift" }, "Return", function (c) awful.client.setmaster(c) end,
             {description = "set master to focused", group = "client"}),
 
     awful.key({ modkey,           }, "o",      function (c) c:move_to_screen()               end,
@@ -364,7 +364,7 @@ local clientkeys = gears.table.join(
         {description = "(un)maximize horizontally", group = "client"}),
     awful.key({ modkey  }, "h",   function (c) c:relative_move(20,  20, -40, -40) end),
     awful.key({ modkey, "Shift"   }, "Prior",  function (c) c:relative_move(-20, -20,  40,  40) end)
-        
+
 )
 
 -- Bind all key numbers to tags.
@@ -424,7 +424,7 @@ local clientbuttons = gears.table.join(
     end),
     awful.button({ modkey}, 2, function (c)
         c:emit_signal("request::activate", "mouse_click", { raise = true}
-        
+
     )
     end),
     awful.button({ modkey }, 3, awful.mouse.client.resize)
@@ -474,7 +474,7 @@ awful.rules.rules = {
         -- and the name shown there might not match defined rules here.
         name = {
           "Event Tester",  -- xev.
-          
+
         },
         role = {
           "AlarmWindow",  -- Thunderbird's calendar.
@@ -506,7 +506,7 @@ client.connect_signal("manage", function (c)
       and not c.size_hints.program_position then
         -- Prevent clients from being unreachable after screen count changes.
         awful.placement.no_offscreen(c)
-      else 
+      else
         awful.client.setslave(c)
     end
 end)
