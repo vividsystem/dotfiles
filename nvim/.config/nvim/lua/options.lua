@@ -26,5 +26,6 @@ opt.cursorline = true
 opt.syntax = "ON"
 opt.termguicolors = true
 opt.showmode = false
+opt.clipboard="unnamedplus"
 
 vim.cmd 'colorscheme ayu'
