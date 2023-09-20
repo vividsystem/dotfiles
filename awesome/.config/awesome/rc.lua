@@ -45,6 +45,7 @@ end
 
 local modkey = "Mod4"
 local terminal = "alacritty"
+local editor = "nvim"
 local run_prompt = "rofi -show"
 
 beautiful.init(theme)
@@ -57,21 +58,6 @@ awful.layout.layouts = {
     awful.layout.suit.max.fullscreen,
 }
 -- }}}
-
-
-
-local alsa = lain.widget.alsa({
-    settings = function ()
-         widget:set_markup("" .. volume_now.status .. " ".. volume_now.level .. "% ")
-    end
-})
-
-local myalsa = {
-    alsa,
-    fg = theme.volume_fg,
-    bg = theme.volume_bg,
-    widget = wibox.container.background
-}
 
 local mykeyboardlayout = {
     awful.widget.keyboardlayout(),
@@ -207,7 +193,6 @@ awful.screen.connect_for_each_screen(function(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            myalsa,
             mykeyboardlayout,
             wibox.widget.systray(),
             mytextclock,
@@ -230,7 +215,12 @@ local globalkeys = gears.table.join(
               {description="show help", group="awesome"}),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore,
               {description = "go back", group = "tag"}),
-
+	  awful.key({}, "F12", function()
+			local current_client = awful.client.focus
+    	if current_client then
+        	current_client.maximized = false
+    	end
+		end),
     awful.key({ modkey,           }, "j",
         function ()
             awful.client.focus.byidx(1)
@@ -301,7 +291,9 @@ local globalkeys = gears.table.join(
     awful.key({ modkey },   "r", function ()
         awful.util.spawn(run_prompt) end,
         {description = "run prompt", group = "launcher"}),
-
+    awful.key({ modkey }, "n", function()
+        awful.util.spawn(string.format("%s -e %s", terminal, editor)) end,
+        { description = "run editor", group = "launcher"}),
     awful.key({ modkey }, "x",
               function ()
                   awful.prompt.run {
@@ -337,31 +329,6 @@ local clientkeys = gears.table.join(
     awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end,
               {description = "toggle keep on top", group = "client"}),
 
-    awful.key({ modkey,           }, "n",
-        function (c)
-            -- The client currently has the input focus, so it cannot be
-            -- minimized, since minimized clients can't have the focus.
-            c.minimized = true
-        end ,
-        {description = "minimize", group = "client"}),
-    awful.key({ modkey,           }, "m",
-        function (c)
-            c.maximized = not c.maximized
-            c:raise()
-        end ,
-        {description = "(un)maximize", group = "client"}),
-    awful.key({ modkey, "Control" }, "m",
-        function (c)
-            c.maximized_vertical = not c.maximized_vertical
-            c:raise()
-        end ,
-        {description = "(un)maximize vertically", group = "client"}),
-    awful.key({ modkey, "Shift"   }, "m",
-        function (c)
-            c.maximized_horizontal = not c.maximized_horizontal
-            c:raise()
-        end ,
-        {description = "(un)maximize horizontally", group = "client"}),
     awful.key({ modkey  }, "h",   function (c) c:relative_move(20,  20, -40, -40) end),
     awful.key({ modkey, "Shift"   }, "Prior",  function (c) c:relative_move(-20, -20,  40,  40) end)
 
@@ -449,7 +416,9 @@ awful.rules.rules = {
                      placement = awful.placement.no_overlap+awful.placement.no_offscreen
      }
     },
-
+		{ rule = { class = "Firefox" },
+  		properties = { opacity = 1, maximized = false, floating = false } 
+		},
     -- Floating clients.
     { rule_any = {
         instance = {
@@ -500,6 +469,10 @@ client.connect_signal("manage", function (c)
     -- Set the windows at the slave,
     -- i.e. put it at the end of others instead of setting it master.
     -- if not awesome.startup then awful.client.setslave(c) end
+
+		c.maximized = false
+		c.maximized_horizontal = false
+		c.maximized_vertical = false
 
     if awesome.startup
       and not c.size_hints.user_position

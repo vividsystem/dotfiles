@@ -1,3 +1,6 @@
-[submodule "awesome/.config/awesome/lain"]
+[submodule "lcpz/lain"]
 	path = awesome/.config/awesome/lain
 	url = https://github.com/lcpz/lain
+[submodule "vividsystem/custonvim"]
+	path = nvim/.config/nvim/
+	url = https://github.com/vividsystem/custonvim

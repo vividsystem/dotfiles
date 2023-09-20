@@ -8,17 +8,22 @@ ZSH_THEME="bullet-train"
 
 plugins=(git)
 
+export CUSTONVIM="$HOME/.config/custonvim"
+alias cnv="XDG_CONFIG_HOME=$CUSTONVIM XDG_CACHE_HOME=$CUSTONVIM XDG_DATA_HOME=$CUSTONVIM/share nvim"
 source $ZSH/oh-my-zsh.sh
 
 export GTK_THEME=Adwaita:dark
-GTK2_RC_FILES=/usr/share/themes/Adwaita-dark/gtk-2.0/gtkrc
+export GTK2_RC_FILES=/usr/share/themes/Adwaita-dark/gtk-2.0/gtkrc
 
 export PATH="$PATH:$HOME/.local/bin"
-export LUA_INCDR=/usr/include/lua5.4/
+export LUA_INCDR="/usr/include/lua5.4/"
 
-fpath+=${ZDOTDIR:-~}/.zsh_functions
-export PNPM_HOME=/home/ms/.local/share/pnpm
-case :/sbin:/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/ms/.local/bin:/home/ms/.local/bin: in
-  *::*) ;;
-  *) export PATH=:/sbin:/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/ms/.local/bin:/home/ms/.local/bin ;;
-esac
+export PNPM_HOME="/home/ms/.local/share/pnpm"
+export PATH="$PATH:$PNPM_HOME"
+
+export GOPATH="$HOME/.go"
+export PATH="$PATH:$HOME/.go/bin"
+
+export PATH="$PATH:$HOME/.local/share/gem/ruby/3.0.0/bin"
+
+source "$HOME/.cargo/env"
