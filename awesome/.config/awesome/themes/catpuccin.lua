@@ -34,9 +34,12 @@ local theme = {
   border_width = 4,
   border_normal = catpuccin.night.black4,
   border_focus = catpuccin.night.lavender,
-  
+
+
   wibar_fg = catpuccin.night.gray1,
   wibar_bg = catpuccin.night.black0,
+
+  bar_component_bg = wibar_bg,
   wibar_border_width = 0,
   wibar_border_color = catpuccin.morning.flamingo,
 
@@ -46,17 +49,10 @@ local theme = {
   tasklist_fg = catpuccin.night.white,
   tasklist_bg = catpuccin.night.black0,
 
-  volume_fg = catpuccin.night.white,
-  volume_bg = catpuccin.morning.peach,
-
-  keyboardlayout_fg = catpuccin.night.black2,
-  keyboardlayout_bg = catpuccin.morning.red,
-
-  date_fg = catpuccin.night.black2,
-  date_bg = catpuccin.morning.green,
-
-  battery_fg = catpuccin.night.black2,
-  battery_bg = catpuccin.morning.flamingo,
+  volume_fg = catpuccin.morning.peach,
+  keyboardlayout_fg = catpuccin.morning.red,
+  date_fg = catpuccin.morning.green,
+  battery_fg = catpuccin.morning.flamingo,
 
   hotkeys_fg = catpuccin.night.white,
   hotkeys_bg = catpuccin.night.black3,

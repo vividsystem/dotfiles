@@ -62,14 +62,14 @@ awful.layout.layouts = {
 local mykeyboardlayout = {
     awful.widget.keyboardlayout(),
     fg = theme.keyboardlayout_fg,
-    bg = theme.keyboardlayout_bg,
+    bg = theme.bar_component_bg,
     widget = wibox.container.background
 }
 
 local mytextclock = {
     wibox.widget.textclock(),
     fg = theme.date_fg,
-    bg = theme.date_bg,
+    bg = theme.bar_component_bg,
     widget = wibox.container.background
 
 }
@@ -86,7 +86,7 @@ local bat = lain.widget.bat({
 local mybattery = {
     bat,
     fg = theme.battery_fg,
-    bg = theme.battery_bg,
+    bg = theme.bar_component_bg,
     widget = wibox.container.background
 }
 
