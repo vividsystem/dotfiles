@@ -2,5 +2,5 @@
 	path = awesome/.config/awesome/lain
 	url = git@github.com:lcpz/lain
 [submodule "nvim/.config/nvim"]
-	path = nvim/.config/nvim/
+	path = nvim/.config/nvim
 	url = git@github.com:vividsystem/custonvim
