@@ -10,10 +10,11 @@ local lain = require("lain")
 -- Theme handling library
 local beautiful = require("beautiful")
 local theme = require("themes/catpuccin")
+
+local util = require("util")
 -- Notification library
 local naughty = require("naughty")
 local hotkeys_popup = require("awful.hotkeys_popup")
-
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
@@ -83,12 +84,7 @@ local bat = lain.widget.bat({
     end,
 })
 
-local mybattery = {
-    bat,
-    fg = theme.battery_fg,
-    bg = theme.bar_component_bg,
-    widget = wibox.container.background
-}
+local mybattery = util.bar_component(bat, theme.battery_fg)
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -145,6 +141,18 @@ awful.screen.connect_for_each_screen(function(s)
             fg_focus = theme.taglist_fg_focus,
             bg_focus = theme.taglist_bg_focus
         },
+				widget_template = {
+            {
+                {
+                    id     = 'text_role',
+                    widget = wibox.widget.textbox,
+                },
+                layout = wibox.layout.fixed.horizontal,
+            },
+            left  = 8,
+            right = 8,
+            widget = wibox.container.margin
+        },
         buttons = taglist_buttons
     }
 
@@ -188,7 +196,6 @@ awful.screen.connect_for_each_screen(function(s)
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
             s.mytaglist,
-            s.mypromptbox,
         },
         s.mytasklist, -- Middle widget
         { -- Right widgets
