@@ -3,26 +3,48 @@ pcall(require, "luarocks.loader")
 -- Standard awesome library
 local gears = require("gears")
 local awful = require("awful")
-
 require("awful.autofocus")
 -- Widget and layout library
 local wibox = require("wibox")
+local lain = require("lain")
 -- Theme handling library
 local beautiful = require("beautiful")
 local theme = require("themes/catpuccin")
 
+local util = require("util")
 -- Notification library
+local naughty = require("naughty")
 local hotkeys_popup = require("awful.hotkeys_popup")
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 
 -- {{{ Error handling
-require("errors")
+-- Check if awesome encountered an error during startup and fell back to
+-- another config (This code will only ever execute for the fallback config)
+if awesome.startup_errors then
+    naughty.notify({ preset = naughty.config.presets.critical,
+                     title = "Oops, there were errors during startup!",
+                     text = awesome.startup_errors })
+end
+
+-- Handle runtime errors after startup
+do
+    local in_error = false
+    awesome.connect_signal("debug::error", function (err)
+        -- Make sure we don't go into an endless error loop
+        if in_error then return end
+        in_error = true
+
+        naughty.notify({ preset = naughty.config.presets.critical,
+                         title = "Oops, an error happened!",
+                         text = tostring(err) })
+        in_error = false
+    end)
+end
 -- }}}
 
 local modkey = "Mod4"
-
 local terminal = "alacritty"
 local editor = "nvim"
 local run_prompt = "rofi -show"
@@ -38,18 +60,151 @@ awful.layout.layouts = {
 }
 -- }}}
 
+local mykeyboardlayout = {
+    awful.widget.keyboardlayout(),
+    fg = theme.keyboardlayout_fg,
+    bg = theme.bar_component_bg,
+    widget = wibox.container.background
+}
 
-local wallpaper = require("wallpaper")
+local mytextclock = {
+    wibox.widget.textclock(),
+    fg = theme.date_fg,
+    bg = theme.bar_component_bg,
+    widget = wibox.container.background
+}
 
-local bars = require("bars")
+local bat = lain.widget.bat({
+    battery = "BAT0",
+    settings = function()
+        if bat_now.status ~= "N/A" then
+            widget:set_markup(" " .. bat_now.status .." ".. bat_now.perc .. "% ")
+        end
+    end,
+})
+
+local mybattery = util.bar_component(bat, theme.battery_fg)
+
+-- Create a wibox for each screen and add it
+local taglist_buttons = gears.table.join(
+                    awful.button({ }, 1, function(t) t:view_only() end),
+                    awful.button({ modkey }, 1, function(t)
+                                              if client.focus then
+                                                  client.focus:move_to_tag(t)
+                                              end
+                                          end),
+                    awful.button({ }, 3, awful.tag.viewtoggle),
+                    awful.button({ modkey }, 3, function(t)
+                                              if client.focus then
+                                                  client.focus:toggle_tag(t)
+                                              end
+                                          end),
+                    awful.button({ }, 4, function(t) awful.tag.viewnext(t.screen) end),
+                    awful.button({ }, 5, function(t) awful.tag.viewprev(t.screen) end)
+                )
+
+
+
+local function set_wallpaper(s)
+    -- Wallpaper
+    if beautiful.wallpaper then
+        local wallpaper = beautiful.wallpaper
+        -- If wallpaper is a function, call it with the screen
+        if type(wallpaper) == "function" then
+            wallpaper = wallpaper(s)
+        end
+        gears.wallpaper.maximized(wallpaper, s, true)
+    end
+end
+
+-- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
+screen.connect_signal("property::geometry", set_wallpaper)
+
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
-    wallpaper:set(s)
+    set_wallpaper(s)
 
     -- Each screen has its own tag table.
     awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
 
-    s.topbar = bars:top(s)
+
+    -- Create a taglist widget
+    s.mytaglist = awful.widget.taglist {
+        screen  = s,
+        filter  = awful.widget.taglist.filter.all,
+        layout   = {
+            spacing = 12,
+            layout  = wibox.layout.fixed.horizontal
+        },
+        style  = {
+            fg_focus = theme.taglist_fg_focus,
+            bg_focus = theme.taglist_bg_focus
+        },
+				widget_template = {
+            {
+                {
+                    id     = 'text_role',
+                    widget = wibox.widget.textbox,
+                },
+                layout = wibox.layout.fixed.horizontal,
+            },
+            left  = 8,
+            right = 8,
+            widget = wibox.container.margin
+        },
+        buttons = taglist_buttons
+    }
+
+    -- Create a tasklist widget
+    s.mytasklist = awful.widget.tasklist {
+        screen  = s,
+        filter  = awful.widget.tasklist.filter.focused,
+        style = {
+            fg_normal = theme.tasklist_fg,
+            bg_normal = theme.tasklist_bg
+        },
+        widget_template = {
+            {
+                {
+                    nil,
+                    {
+                        id = "text_role",
+                        widget = wibox.widget.textbox,
+                    },
+                    layout = wibox.layout.fixed.horizontal,
+                },
+                left = 10,
+                right = 10,
+                widget = wibox.container.margin
+            },
+            id = "background_role",
+            widget = wibox.container.background,
+        }
+
+    }
+
+    -- Create the wibox
+    s.mywibox = awful.wibar({
+        position = "top",
+        screen = s,
+    })
+
+    -- Add widgets to the wibox
+    s.mywibox:setup {
+        layout = wibox.layout.align.horizontal,
+        { -- Left widgets
+            layout = wibox.layout.fixed.horizontal,
+            s.mytaglist,
+        },
+        s.mytasklist, -- Middle widget
+        { -- Right widgets
+            layout = wibox.layout.fixed.horizontal,
+            mykeyboardlayout,
+            wibox.widget.systray(),
+            mytextclock,
+            mybattery
+        }
+    }
 end)
 -- }}}
 
