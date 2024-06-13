@@ -11,6 +11,7 @@ function bars:top(s)
 	local bar = awful.wibar({
 		position = "top",
 		screen = s,
+		height = "48",
 	})
 	bar:setup({
 		layout = wibox.layout.align.horizontal,
@@ -25,6 +26,10 @@ function bars:top(s)
 			widgets:keyboardlayout(),
 			wibox.widget.systray(),
 			widgets:textclock(),
+			widgets:textclock({
+				format = "BA: %H:%M",
+				timezone = "-03"
+			}),
 			widgets:battery()
 		}
 	})
