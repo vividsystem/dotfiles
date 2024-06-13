@@ -15,9 +15,18 @@ function widgets:keyboardlayout()
 	}
 end
 
-function widgets:textclock()
+function widgets:textclock(opts)
+	opts = opts or {}
+	local timezone = opts.timezone or "local"
+	local format = opts.format or "%a %b %d %H:%M"
+
 	return {
-    wibox.widget.textclock(),
+		{
+    	wibox.widget.textclock(format, 60, timezone),
+			widget = wibox.container.margin,
+			left = 8,
+			right = 8
+		},
     fg = theme.date_fg,
     bg = theme.bar_component_bg,
     widget = wibox.container.background
@@ -29,9 +38,16 @@ function widgets:battery()
 		lain.widget.bat({
 			battery = "BAT0",
 			settings = function()
-					if bat_now.status ~= "N/A" then
-							widget:set_markup(" " .. bat_now.status .." ".. bat_now.perc .. "% ")
-					end
+				local bat_mappings = {
+					["Full"] = "",
+					["N/A"] = "",
+					["Charging"] = " ⚡︎",
+					["Discharging"] = ""
+				}
+				if bat_now.status ~= "N/A" then
+					local status = bat_mappings[bat_now.status]
+					widget:set_markup("bat:" .. status .. " " .. bat_now.perc .. "% ")
+				end
 			end,
 		}),
 		fg = theme.battery_fg,
