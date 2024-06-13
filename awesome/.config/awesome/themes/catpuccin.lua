@@ -29,9 +29,9 @@ local catpuccin = {
 }
 
 local theme = {
-  font = "Fira Code Nerd Font Mono 10",
-  useless_gap = 10,
-  border_width = 4,
+  font = "Fira Code Nerd Font Mono 16",
+  useless_gap = 5,
+  border_width = 0,
   border_normal = catpuccin.night.black4,
   border_focus = catpuccin.night.lavender,
 
@@ -39,7 +39,7 @@ local theme = {
   wibar_fg = catpuccin.night.gray1,
   wibar_bg = catpuccin.night.black0,
 
-  bar_component_bg = wibar_bg,
+  bar_component_bg = catpuccin.night.black0,
   wibar_border_width = 0,
   wibar_border_color = catpuccin.morning.flamingo,
 
