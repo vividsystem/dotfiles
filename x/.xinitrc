@@ -1,3 +1,3 @@
 nitrogen --restore &
 picom &
-exec xmonad
+exec awesome 
