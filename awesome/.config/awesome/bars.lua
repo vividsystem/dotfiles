@@ -25,7 +25,7 @@ function bars:top(s)
 			layout = wibox.layout.fixed.horizontal,
 			widgets:keyboardlayout(),
 			wibox.widget.systray(),
-			widgets:textclock(),
+			widgets:textclock({ timezone = "Europe/Berlin"}),
 			widgets:textclock({
 				format = "BA: %H:%M",
 				timezone = "-03"
