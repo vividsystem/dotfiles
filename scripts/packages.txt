@@ -1,6 +1,7 @@
 nvidia
 amd-ucode
 usbutils
+net-tools
 
 base-devel
 sudo
@@ -34,6 +35,7 @@ alacritty
 firefox
 zathura
 zathura-pdf-poppler
+xdotool
 
 texlive
 biber
@@ -53,3 +55,5 @@ pulsemixer
 
 npm
 pnpm
+
+inkscape
