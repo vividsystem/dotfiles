@@ -55,5 +55,8 @@ pulsemixer
 
 npm
 pnpm
+docker
+docker-compose
 
 inkscape
+
