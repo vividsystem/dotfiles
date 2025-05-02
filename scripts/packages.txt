@@ -36,6 +36,7 @@ firefox
 zathura
 zathura-pdf-poppler
 xdotool
+libreoffice
 
 texlive
 biber
