@@ -12,6 +12,7 @@ wget
 unzip
 ripgrep
 fd
+zsh
 
 nano
 vim
@@ -53,6 +54,8 @@ wireplumber
 pipewire-pulse
 pipewire-alsa
 pulsemixer
+
+go
 
 npm
 pnpm
