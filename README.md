@@ -16,6 +16,8 @@ This installs all packages that are not already installed necessary for this con
 pacman -S --needed - < scripts/packages.txt
 ```
 
+You will also need to install [ohmyzsh](https://ohmyz.sh/)
+
 Copy the config via stow:
 ```bash
 git submodule init
@@ -34,8 +36,8 @@ set `gfx.font_rendering.fontconfig.max_generic_substitutions` to `127`
 - Additional
     1. Wappalizer
 ## Branches
- * dev -> my everyday-use dotfiles
- (might add rices or smth later)
+ * master -> somewhat stable 
+ * dev -> my daily files 
 
 ## License
 Provided under the [MIT License](./LICENSE.md)
