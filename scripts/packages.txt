@@ -1,18 +1,25 @@
-nvidia
+linux
+linux-firmware
+linux-headers
+nvidia-dkms
 amd-ucode
 usbutils
 net-tools
+acpi
 
 base-devel
 sudo
 git
+act
 stow
 openssh
+keychain
 wget
 unzip
 ripgrep
 fd
 zsh
+ddrescue
 
 nano
 vim
@@ -63,4 +70,10 @@ docker
 docker-compose
 
 inkscape
+rclone
 
+flameshot
+python-uv
+
+hyprland
+egl-wayland
