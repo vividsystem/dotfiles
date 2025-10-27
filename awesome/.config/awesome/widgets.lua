@@ -10,7 +10,7 @@ function widgets:keyboardlayout()
 	return {
     awful.widget.keyboardlayout(),
     fg = theme.keyboardlayout_fg,
-    bg = theme.bar_component_bg,
+    bg = theme.bar_bg,
     widget = wibox.container.background
 	}
 end
@@ -28,7 +28,7 @@ function widgets:textclock(opts)
 			right = 8
 		},
     fg = theme.date_fg,
-    bg = theme.bar_component_bg,
+    bg = theme.bar_bg,
     widget = wibox.container.background
 	}
 end
@@ -51,7 +51,7 @@ function widgets:battery()
 			end,
 		}),
 		fg = theme.battery_fg,
-    bg = theme.bar_component_bg,
+    bg = theme.bar_bg,
 		widget = wibox.container.background
 	}
 end
@@ -63,7 +63,9 @@ function widgets:tasklist(s)
 		filter  = awful.widget.tasklist.filter.focused,
 		style = {
 			fg_normal = theme.tasklist_fg,
-			bg_normal = theme.tasklist_bg
+			bg = theme.bar_bg,
+			bg_normal = theme.bar_bg,
+			bg_focus = theme.bar_bg
 		},
 		widget_template = {
 			{
@@ -74,10 +76,11 @@ function widgets:tasklist(s)
 						widget = wibox.widget.textbox,
 					},
 					layout = wibox.layout.fixed.horizontal,
+
 				},
 				left = 10,
 				right = 10,
-				widget = wibox.container.margin
+				widget = wibox.container.margin,
 			},
 			id = "background_role",
 			widget = wibox.container.background,
@@ -111,7 +114,7 @@ function widgets:taglist(s)
 		},
 		style  = {
 			fg_focus = theme.taglist_fg_focus,
-			bg_focus = theme.taglist_bg_focus
+			bg_focus = theme.bar_bg
 		},
 		widget_template = {
 			{
