@@ -16,8 +16,7 @@ You will also need to install [ohmyzsh](https://ohmyz.sh/)
 
 Copy the config via stow:
 ```bash
-git submodule init
-git submodule update
+git clone --recurse-submodules https://github.com/vividsystem/dotfiles
 stow */
 ```
 
