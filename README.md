@@ -1,4 +1,5 @@
 # Vivid Dotfiles
+Looking for my neovim config specifically? [Go here](https://github.com/vividsystem/custonvim)
 ## My Setup
 * WM: Awesome
 * Editor: Neovim
