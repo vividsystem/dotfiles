@@ -36,10 +36,10 @@ local theme = {
   border_focus = catpuccin.night.lavender,
 
 
-  wibar_fg = catpuccin.night.gray1,
-  wibar_bg = catpuccin.night.black0,
+  bar_fg = catpuccin.night.gray1,
+	bar_bg_color = catpuccin.night.black0,
+	bar_opacity = "80",
 
-  bar_component_bg = catpuccin.night.black0,
   wibar_border_width = 0,
   wibar_border_color = catpuccin.morning.flamingo,
 
@@ -49,7 +49,6 @@ local theme = {
   tasklist_fg = catpuccin.night.white,
   tasklist_bg = catpuccin.night.black0,
 
-  volume_fg = catpuccin.morning.peach,
   keyboardlayout_fg = catpuccin.morning.red,
   date_fg = catpuccin.morning.green,
   battery_fg = catpuccin.morning.flamingo,
@@ -59,16 +58,9 @@ local theme = {
   hotkeys_border_width = 4,
   hotkeys_border_color = catpuccin.morning.green,
 
-  notification_fg = catpuccin.night.white,
-  notification_bg = catpuccin.night.black1,
-  notification_border_width = 4,
-  notification_border_color = catpuccin.night.gray0,
-  notification_max_height = 160,
-  notification_max_width = 512,
-  notification_opacity = 1,
-
   pallet = catpuccin
 }
+theme.bar_bg = (theme.bar_bg_color .. theme.bar_opacity)
 
 theme.gtk = beautfiul.gtk.get_theme_variables()
 theme.gtk = {

@@ -12,6 +12,8 @@ function bars:top(s)
 		position = "top",
 		screen = s,
 		height = "48",
+		bg = theme.bar_bg,
+		fg = theme.bar_fg,
 	})
 	bar:setup({
 		layout = wibox.layout.align.horizontal,
@@ -30,7 +32,7 @@ function bars:top(s)
 				format = "BA: %H:%M",
 				timezone = "-03"
 			}),
-			widgets:battery()
+			widgets:battery(),
 		}
 	})
 
