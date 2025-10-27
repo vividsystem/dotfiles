@@ -28,7 +28,7 @@ program = "/bin/zsh"
 [window]
 decorations = "none"
 dynamic_title = false
-opacity = 1
+opacity = 0.75
 title = "alacritty"
 
 [general]
