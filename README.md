@@ -30,6 +30,17 @@ set `gfx.font_rendering.fontconfig.max_generic_substitutions` to `127`
     2. uBlock Origin
 - Additional
     1. Wappalizer
+
+## DNS
+`/etc/systemd/resolved.conf`
+I recommend using [quad9](quad9.net)
+```
+DNS=9.9.9.11#dns11.quad9.net 149.112.112.11#dns11.quad9.net 2620:fe::11#dns11.quad9.net 2620:fe::fe:11#dns11.quad9.net
+FallbackDNS=9.9.9.9#dns.quad9.net 149.112.112.112#dns.quad9.net 2620:fe::fe#dns.quad9.net 2620:fe::9#dns.quad9.net
+DNSSEC=true
+DNSOverTLS=yes
+```
+
 ## Branches
  * master -> somewhat stable 
  * dev -> my daily files 
