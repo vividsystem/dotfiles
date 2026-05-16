@@ -20,6 +20,7 @@ ripgrep
 fd
 zsh
 ddrescue
+rsync
 
 nano
 vim
@@ -32,7 +33,7 @@ xorg-xinit
 awesome
 ly
 picom
-nitrogen
+feh
 rofi
 dunst
 xclip
@@ -68,6 +69,7 @@ npm
 pnpm
 docker
 docker-compose
+dbeaver
 
 inkscape
 rclone
@@ -77,3 +79,5 @@ python-uv
 
 hyprland
 egl-wayland
+vlc
+vlc-plugins-all
