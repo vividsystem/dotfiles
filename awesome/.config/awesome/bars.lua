@@ -17,29 +17,22 @@ function bars:top(s)
 	})
 	bar:setup({
 		layout = wibox.layout.align.horizontal,
-		{--Left
+		{ --Left
 			layout = wibox.layout.fixed.horizontal,
 			widgets:taglist(s),
 		},
 		-- Middle
-    widgets:tasklist(s),
-		{-- Right
+		widgets:tasklist(s),
+		{ -- Right
 			layout = wibox.layout.fixed.horizontal,
 			widgets:keyboardlayout(),
 			wibox.widget.systray(),
-			widgets:textclock({ timezone = "Europe/Berlin"}),
-			widgets:textclock({
-				format = "BA: %H:%M",
-				timezone = "-03"
-			}),
+			widgets:textclock({ timezone = "Europe/Berlin" }),
 			widgets:battery(),
-		}
+		},
 	})
 
 	return bar
 end
-
-
-
 
 return bars

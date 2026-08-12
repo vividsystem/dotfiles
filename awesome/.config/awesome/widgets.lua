@@ -8,10 +8,10 @@ local widgets = {}
 
 function widgets:keyboardlayout()
 	return {
-    awful.widget.keyboardlayout(),
-    fg = theme.keyboardlayout_fg,
-    bg = theme.bar_bg,
-    widget = wibox.container.background
+		awful.widget.keyboardlayout(),
+		fg = theme.keyboardlayout_fg,
+		bg = theme.bar_bg,
+		widget = wibox.container.background,
 	}
 end
 
@@ -22,14 +22,14 @@ function widgets:textclock(opts)
 
 	return {
 		{
-    	wibox.widget.textclock(format, 60, timezone),
+			wibox.widget.textclock(format, 60, timezone),
 			widget = wibox.container.margin,
 			left = 8,
-			right = 8
+			right = 8,
 		},
-    fg = theme.date_fg,
-    bg = theme.bar_bg,
-    widget = wibox.container.background
+		fg = theme.date_fg,
+		bg = theme.bar_bg,
+		widget = wibox.container.background,
 	}
 end
 
@@ -40,32 +40,32 @@ function widgets:battery()
 			settings = function()
 				local bat_mappings = {
 					["Full"] = "",
-					["N/A"] = "",
-					["Charging"] = " ⚡︎",
-					["Discharging"] = ""
+					["N/A"] = "?",
+					["Charging"] = "↑",
+					["Discharging"] = "↓",
 				}
 				if bat_now.status ~= "N/A" then
 					local status = bat_mappings[bat_now.status]
-					widget:set_markup("bat:" .. status .. " " .. bat_now.perc .. "% ")
+					widget:set_markup("↯" .. status .. " " .. bat_now.perc .. "% ")
 				end
 			end,
 		}),
 		fg = theme.battery_fg,
-    bg = theme.bar_bg,
-		widget = wibox.container.background
+		bg = theme.bar_bg,
+		widget = wibox.container.background,
 	}
 end
 
 function widgets:tasklist(s)
 	-- Create a tasklist widget
-	return awful.widget.tasklist {
-		screen  = s,
-		filter  = awful.widget.tasklist.filter.focused,
+	return awful.widget.tasklist({
+		screen = s,
+		filter = awful.widget.tasklist.filter.focused,
 		style = {
 			fg_normal = theme.tasklist_fg,
 			bg = theme.bar_bg,
 			bg_normal = theme.bar_bg,
-			bg_focus = theme.bar_bg
+			bg_focus = theme.bar_bg,
 		},
 		widget_template = {
 			{
@@ -76,7 +76,6 @@ function widgets:tasklist(s)
 						widget = wibox.widget.textbox,
 					},
 					layout = wibox.layout.fixed.horizontal,
-
 				},
 				left = 10,
 				right = 10,
@@ -84,53 +83,58 @@ function widgets:tasklist(s)
 			},
 			id = "background_role",
 			widget = wibox.container.background,
-		}
-	}
+		},
+	})
 end
 
 function widgets:taglist(s)
 	local taglist_buttons = gears.table.join(
-		awful.button({ }, 1, function(t) t:view_only() end),
+		awful.button({}, 1, function(t)
+			t:view_only()
+		end),
 		awful.button({ modkey }, 1, function(t)
 			if client.focus then
 				client.focus:move_to_tag(t)
 			end
 		end),
-		awful.button({ }, 3, awful.tag.viewtoggle),
+		awful.button({}, 3, awful.tag.viewtoggle),
 		awful.button({ modkey }, 3, function(t)
 			if client.focus then
 				client.focus:toggle_tag(t)
 			end
 		end),
-		awful.button({ }, 4, function(t) awful.tag.viewnext(t.screen) end),
-		awful.button({ }, 5, function(t) awful.tag.viewprev(t.screen) end)
+		awful.button({}, 4, function(t)
+			awful.tag.viewnext(t.screen)
+		end),
+		awful.button({}, 5, function(t)
+			awful.tag.viewprev(t.screen)
+		end)
 	)
-	return awful.widget.taglist {
-		screen  = s,
-		filter  = awful.widget.taglist.filter.all,
-		layout   = {
+	return awful.widget.taglist({
+		screen = s,
+		filter = awful.widget.taglist.filter.all,
+		layout = {
 			spacing = 12,
-			layout  = wibox.layout.fixed.horizontal
+			layout = wibox.layout.fixed.horizontal,
 		},
-		style  = {
+		style = {
 			fg_focus = theme.taglist_fg_focus,
-			bg_focus = theme.bar_bg
+			bg_focus = theme.bar_bg,
 		},
 		widget_template = {
 			{
 				{
-					id     = 'text_role',
+					id = "text_role",
 					widget = wibox.widget.textbox,
 				},
 				layout = wibox.layout.fixed.horizontal,
 			},
-			left  = 8,
+			left = 8,
 			right = 8,
-			widget = wibox.container.margin
+			widget = wibox.container.margin,
 		},
-		buttons = taglist_buttons
-	}
-
+		buttons = taglist_buttons,
+	})
 end
 
 return widgets
