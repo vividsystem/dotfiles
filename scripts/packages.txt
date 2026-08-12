@@ -1,11 +1,11 @@
 linux
 linux-firmware
 linux-headers
-nvidia-dkms
-amd-ucode
+acpi
 usbutils
 net-tools
-acpi
+networkmanager
+ufw
 
 base-devel
 sudo
@@ -21,6 +21,7 @@ fd
 zsh
 ddrescue
 rsync
+sbctl
 
 nano
 vim
@@ -81,3 +82,5 @@ hyprland
 egl-wayland
 vlc
 vlc-plugins-all
+fastfetch
+htop
