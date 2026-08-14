@@ -20,3 +20,6 @@ export PATH="$PATH:$GOBIN"
 export PATH="$PATH:$HOME/.local/share/gem/ruby/3.0.0/bin"
 
 source "$HOME/.cargo/env"
+source "$HOME/.nnn_quitcd.zsh"
+
+source "$HOME/init.sh"
