@@ -79,7 +79,16 @@ flameshot
 python-uv
 
 hyprland
+hyprpolkitagent
+hyprpaper
 egl-wayland
+wl-copy
+xdg-desktop-portal-hyprland
+grim
+slurp
+swappy
+upower
+
 vlc
 vlc-plugins-all
 fastfetch
